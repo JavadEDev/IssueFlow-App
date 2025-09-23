@@ -76,3 +76,20 @@ export type ActionResponse = {
   errors?: Record<string, string[]>
   error?: string
 }
+
+export interface NavLinkProps {
+  href: string
+  icon: React.ReactNode
+  label: string
+  isActive?: boolean
+}
+
+export interface IssueFormProps {
+  issue?: Issue
+  userId: string
+  isEditing?: boolean
+}
+
+export interface DeleteIssueButtonProps {
+  id: number
+}
