@@ -14,7 +14,7 @@ import Link from 'next/link'
 import toast from 'react-hot-toast'
 import { signUp } from '@/app/actions/auth'
 import { ActionResponse } from '@/lib/types'
-import { EyeClosed,Eye } from 'lucide-react'
+import { EyeClosed, Eye, Check, X } from 'lucide-react'
 
 const initialState: ActionResponse = {
   success: false,
@@ -25,6 +25,7 @@ const initialState: ActionResponse = {
 const SignUpPage = () => {
   const router = useRouter()
   const [showPassword, setShowPassword] = useState(false)
+  const [password, setPassword] = useState('')
   // Use useActionState hook for the form submission action
   const [state, formAction, isPending] = useActionState<
     ActionResponse,
@@ -100,7 +101,9 @@ const SignUpPage = () => {
               autoComplete="new-password"
               required
               disabled={isPending}
-              aria-describedby="password-error"
+              aria-describedby="password-requirements password-error"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               className={state?.errors?.password ? 'border-red-500  pr-10' : 'pr-10'}
             />
               <button
@@ -114,6 +117,48 @@ const SignUpPage = () => {
                 {showPassword ? <Eye /> :  <EyeClosed />}
               </button>
             </div>
+            {/* Live password requirements checklist */}
+            <ul
+              id="password-requirements"
+              className="mt-2 space-y-1 text-xs"
+              aria-live="polite"
+              role="status"
+            >
+              {[
+                {
+                  met: password.length >= 8,
+                  label: 'At least 8 characters',
+                },
+                {
+                  met: /[A-Z]/.test(password),
+                  label: 'Contains an uppercase letter',
+                },
+                {
+                  met: /[a-z]/.test(password),
+                  label: 'Contains a lowercase letter',
+                },
+                {
+                  met: /[0-9]/.test(password),
+                  label: 'Contains a number',
+                },
+                {
+                  met: /[^A-Za-z0-9]/.test(password),
+                  label: 'Contains a special character',
+                },
+              ].map((item, idx) => (
+                <li
+                  key={idx}
+                  className={item.met ? 'flex items-center gap-2 text-green-600' : 'flex items-center gap-2 text-slate-500 dark:text-slate-400'}
+                >
+                  {item.met ? (
+                    <Check className="h-4 w-4" />
+                  ) : (
+                    <X className="h-4 w-4" />
+                  )}
+                  <span>{item.label}</span>
+                </li>
+              ))}
+            </ul>
             {state?.errors?.password && (
               <p id="password-error" className="text-sm text-red-500">
                 {state.errors.password[0]}
