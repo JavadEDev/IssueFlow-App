@@ -100,6 +100,8 @@ export async function updateIssue(
     // Update issue
     await db.update(issues).set(updateData).where(eq(issues.id, id))
 
+    revalidateTag('issues')
+
     return { success: true, message: 'Issue updated successfully' }
   } catch (error) {
     console.error('Error updating issue:', error)
@@ -122,6 +124,8 @@ export async function deleteIssue(id: number) {
 
     // Delete issue
     await db.delete(issues).where(eq(issues.id, id))
+
+    revalidateTag('issues')
 
     return { success: true, message: 'Issue deleted successfully' }
   } catch (error) {

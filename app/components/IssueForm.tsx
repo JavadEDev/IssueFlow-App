@@ -16,6 +16,7 @@ import {
 } from './ui/Form'
 import { createIssue, updateIssue } from '@/app/actions/issues'
 import { ActionResponse, IssueFormProps} from '@/lib/types'
+import { mockDelay } from '@/lib/utils'
 
 
 
@@ -60,6 +61,7 @@ export default function IssueForm({
       if (result.success) {
         toast.success(isEditing ? 'Issue updated successfully' : 'Issue created successfully')
         router.refresh()
+
         if (!isEditing) {
           router.push('/dashboard')
         }
