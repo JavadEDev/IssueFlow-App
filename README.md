@@ -56,6 +56,7 @@ Welcome to **IssueFlow** — a lightweight, production-ready template for buildi
 - [Features](#features)
 - [Project Structure](#project-structure)
 - [Scripts](#scripts)
+- [Testing](#testing)
 - [Technologies Used](#technologies-used)
 - [Contributing](#contributing)
 - [License](#license)
@@ -164,6 +165,41 @@ npm run db:studio  # Open Drizzle Studio
 npm run seed       # Seed database with demo data
 npm run test       # Run tests (Vitest)
 ```
+
+## Testing
+
+If not already installed, add the testing stack:
+
+```bash
+npm i -D vitest @testing-library/react @testing-library/dom jsdom @vitejs/plugin-react vite-tsconfig-paths
+```
+
+Recommended Vitest setup:
+
+```ts
+// vitest.config.ts
+import { defineConfig } from 'vitest/config'
+
+export default defineConfig({
+  test: {
+    environment: 'jsdom',
+    setupFiles: ['./vitest.setup.ts'],
+  },
+})
+```
+
+```ts
+// vitest.setup.ts
+import '@testing-library/jest-dom'
+```
+
+Run tests:
+
+```bash
+npm run test
+```
+
+Place tests alongside components or in a `__tests__` directory (e.g. `app/components/__tests__/Button.test.tsx`).
 
 ## Technologies Used
 
