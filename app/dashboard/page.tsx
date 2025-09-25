@@ -27,8 +27,8 @@ export default async function DashboardPage() {
 
       {issues.length > 0 ? (
         <div className="overflow-hidden rounded-lg border border-gray-200 dark:border-dark-border-default bg-white dark:bg-dark-high shadow-sm">
-          {/* Header row */}
-          <div className="grid grid-cols-12 gap-4 px-6 py-3 text-sm font-medium text-gray-500 dark:text-gray-400 bg-gray-50 dark:bg-dark-elevated border-b border-gray-200 dark:border-dark-border-default">
+          {/* Header row (hidden on mobile) */}
+          <div className="hidden md:grid grid-cols-12 gap-4 px-4 md:px-6 py-3 text-sm font-medium text-gray-500 dark:text-gray-400 bg-gray-50 dark:bg-dark-elevated border-b border-gray-200 dark:border-dark-border-default">
             <div className="col-span-5">Title</div>
             <div className="col-span-2">Status</div>
             <div className="col-span-2">Priority</div>
@@ -43,21 +43,28 @@ export default async function DashboardPage() {
                 href={`/issues/${issue.id}`}
                 className="block hover:bg-gray-50 dark:hover:bg-dark-elevated transition-colors"
               >
-                <div className="grid grid-cols-12 gap-4 px-6 py-4 items-center">
-                  <div className="col-span-5 font-medium truncate">
+                <div className="px-4 md:px-6 py-4 md:grid md:grid-cols-12 gap-4 items-center">
+                  <div className="md:col-span-5 font-medium truncate">
                     {issue.title}
                   </div>
-                  <div className="col-span-2">
-                    <Badge status={issue.status as Status}>
-                      {ISSUE_STATUS[issue.status as Status].label}
-                    </Badge>
+                  <div className="md:col-span-2">
+                    <div className="flex items-center gap-2 md:block">
+                      <Badge status={issue.status as Status}>
+                        {ISSUE_STATUS[issue.status as Status].label}
+                      </Badge>
+                      <span className="md:hidden">
+                        <Badge priority={issue.priority as Priority}>
+                          {ISSUE_PRIORITY[issue.priority as Priority].label}
+                        </Badge>
+                      </span>
+                    </div>
                   </div>
-                  <div className="col-span-2">
+                  <div className="md:col-span-2 hidden md:block">
                     <Badge priority={issue.priority as Priority}>
                       {ISSUE_PRIORITY[issue.priority as Priority].label}
                     </Badge>
                   </div>
-                  <div className="col-span-3 text-sm text-gray-500 dark:text-gray-400">
+                  <div className="text-sm text-gray-500 dark:text-gray-400 mt-2 md:mt-0 md:col-span-3">
                     {formatRelativeTime(new Date(issue.createdAt))}
                   </div>
                 </div>

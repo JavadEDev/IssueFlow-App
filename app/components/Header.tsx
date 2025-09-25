@@ -15,12 +15,6 @@ export default async function Header() {
           </Link>
           <nav className="hidden md:flex gap-6">
             <Link
-              href="/features"
-              className="text-sm font-medium hover:text-purple-600"
-            >
-              Features
-            </Link>
-            <Link
               href="/pricing"
               className="text-sm font-medium hover:text-purple-600"
             >
@@ -38,9 +32,14 @@ export default async function Header() {
           {user ? (
             <div className="flex items-center space-x-4">
               <Link href="/dashboard">
-              <span className="hidden md:inline text-sm text-slate-700 dark:text-slate-300 truncate">
-                <Button >{user.email}</Button>
-              </span>
+                <>
+                  <span className="hidden md:inline text-sm text-slate-700 dark:text-slate-300 truncate">
+                    <Button >{user.email}</Button>
+                  </span>
+                  <span className="inline md:hidden text-sm text-slate-700 dark:text-slate-300 truncate">
+                    <Button variant="secondary" >Dashboard</Button>
+                  </span>
+                </>
               </Link>
               <SignOutButton />
             </div>

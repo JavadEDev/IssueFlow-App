@@ -17,14 +17,6 @@ const Footer = () => {
           <ul className="space-y-2">
             <li>
               <Link
-                href="/features"
-                className="text-sm text-gray-600 hover:text-purple-600"
-              >
-                Features
-              </Link>
-            </li>
-            <li>
-              <Link
                 href="/pricing"
                 className="text-sm text-gray-600 hover:text-purple-600"
               >
@@ -45,16 +37,18 @@ const Footer = () => {
           <h3 className="text-sm font-semibold mb-4">Resources</h3>
           <ul className="space-y-2">
             <li>
-              <Link
-                href="/docs"
+              <a
+                href="https://www.linkedin.com/in/javadesmati/details/projects/?profileUrn=urn%3Ali%3Afsd_profile%3AACoAACU0MrQBcGcrD-NDJ_egvHpcgQGd6zxZeOw"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-sm text-gray-600 hover:text-purple-600"
               >
                 Documentation
-              </Link>
+              </a>
             </li>
             <li>
               <a
-                href="https://github.com/yourusername/mode"
+                href="https://github.com/JavadEDev/IssueFlow-App"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-sm text-gray-600 hover:text-purple-600"
