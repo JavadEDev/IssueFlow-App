@@ -93,3 +93,8 @@ export interface IssueFormProps {
 export interface DeleteIssueButtonProps {
   id: number
 }
+
+export type FAQ = {
+  question: string
+  answer: string
+}
