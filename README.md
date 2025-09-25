@@ -1,7 +1,7 @@
 # IssueFlow
 
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-Coming%20Soon-gray?style=for-the-badge)](https://example.com)
-[![GitHub](https://img.shields.io/badge/GitHub-View%20Source-blue?style=for-the-badge)](https://github.com/your-org/issueflow)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-View%20Project-green?style=for-the-badge)](https://issue-flow-app.vercel.app/)
+[![GitHub](https://img.shields.io/badge/GitHub-View%20Source-blue?style=for-the-badge)](https://github.com/JavadEDev/IssueFlow-App)
 
 ![last commit](https://img.shields.io/badge/last%20commit-today-blue)
 ![typescript](https://img.shields.io/badge/typescript-true-blue)
